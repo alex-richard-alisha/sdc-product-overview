@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest tests",
     "start": "nodemon server/index.js"
   },
   "repository": {
@@ -23,7 +23,8 @@
     "express": "^4.17.1",
     "jest": "^27.0.6",
     "nodemon": "^2.0.12",
-    "pg": "^8.7.1"
+    "pg": "^8.7.1",
+    "supertest": "^6.1.5"
   },
   "devDependencies": {
     "eslint": "^7.32.0",

@@ -24,4 +24,4 @@ client.connect()
   .catch((e) => console.log)
   .finally(() => client.end());
 
-module.exports = pool;
+module.exports = { pool, client };

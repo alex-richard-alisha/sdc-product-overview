@@ -12,6 +12,7 @@ router.get('/products/:product_id', (req, res) => {
 });
 
 router.get('/products/:product_id/styles', (req, res) => {
+  console.log('👗 STYLES request 👕');
   queries.getStyles(req.params.product_id, (err, data) => {
     if (err) {
       res.status(404).send(err);

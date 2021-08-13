@@ -1,26 +1,26 @@
 /* eslint-disable no-console */
-const db = require('./index');
+const { pool, client } = require('./index');
 
 const getProducts = (productID, callback) => {
   const query = `SELECT product_info.product_id AS id, name, slogan, description, category, default_price, jsonb_agg(json_build_object('feature', features.feature, 'value', features.value)) AS features FROM product_info JOIN features ON features.product_id = product_info.product_id WHERE product_info.product_id=${productID} GROUP BY product_info.product_id;`;
-  db.query(query, (err, result) => {
+  pool.query(query, (err, result) => {
     if (err) {
       console.log(err);
     } else {
       callback(result.rows[0]);
-      db.end();
+      client.end();
     }
   });
 };
 
 const getStyles = (productID, callback) => {
-  const query = `SELECT styles.style_id AS id, name, original_price, sale_price, default_style AS default, jsonb_agg(json_build_object('photos', photos.thumbnail_url, 'url', photos.url)) AS photos FROM styles JOIN photos ON photos.style_id = styles.style_id WHERE styles.product_id=${productID} GROUP BY styles.style_id`;
-  db.query(query, (err, result) => {
+  const query = `SELECT styles.style_id AS id, name, original_price, sale_price, default_style AS default, jsonb_agg (distinct jsonb_build_object('photos', photos.thumbnail_url, 'url', photos.url)) AS photos, jsonb_object_agg(inventory.product_id, jsonb_build_object('quantity', inventory.quantity, 'size', inventory.size)) AS inventory FROM styles JOIN photos on photos.style_id = styles.style_id JOIN inventory ON inventory.style_id = styles.style_id WHERE styles.product_id=${productID} GROUP BY styles.style_id;`;
+  pool.query(query, (err, result) => {
     if (err) {
       console.log(err);
     } else {
-      callback(result.rows[0]);
-      db.end();
+      callback(result.rows);
+      client.end();
     }
   });
 };

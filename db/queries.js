@@ -25,8 +25,6 @@ const getStyles = (productID, callback) => {
   });
 };
 
-// const query = `SELECT jsonb_agg(related.related_id) FROM related WHERE product_id=${productID};`;
-
 const getRelated = (productID, callback) => {
   const query = `SELECT json_agg(related.related_id) AS related FROM related WHERE product_id=${productID};`;
   pool.query(query, (err, result) => {

@@ -21,7 +21,7 @@ const client = new Client({
 
 client.connect()
   .then(() => console.log('🐘 🐘 DB CONNECTED 🐘 🐘'))
-  .catch((e) => console.log)
+  .catch((e) => console.log(e))
   .finally(() => client.end());
 
 module.exports = { pool, client };

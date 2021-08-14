@@ -14,7 +14,7 @@ const getProducts = (productID, callback) => {
 };
 
 const getStyles = (productID, callback) => {
-  const query = `SELECT styles.style_id AS id, name, original_price, sale_price, default_style AS default, jsonb_agg (distinct jsonb_build_object('photos', photos.thumbnail_url, 'url', photos.url)) AS photos, jsonb_object_agg(inventory.product_id, jsonb_build_object('quantity', inventory.quantity, 'size', inventory.size)) AS inventory FROM styles JOIN photos on photos.style_id = styles.style_id JOIN inventory ON inventory.style_id = styles.style_id WHERE styles.product_id=${productID} GROUP BY styles.style_id;`;
+  const query = `SELECT styles.style_id AS id, name, original_price, sale_price, default_style AS default, jsonb_agg (distinct jsonb_build_object('photos', photos.thumbnail_url, 'url', photos.url)) AS photos, jsonb_object_agg(skus.sku, jsonb_build_object('quantity', skus.quantity, 'size', skus.size)) AS skus FROM styles JOIN photos on photos.style_id = styles.style_id JOIN skus ON skus.style_id = styles.style_id WHERE styles.product_id=${productID} GROUP BY styles.style_id;`;
   pool.query(query, (err, result) => {
     if (err) {
       console.log(err);
@@ -25,4 +25,18 @@ const getStyles = (productID, callback) => {
   });
 };
 
-module.exports = { getProducts, getStyles };
+// const query = `SELECT jsonb_agg(related.related_id) FROM related WHERE product_id=${productID};`;
+
+const getRelated = (productID, callback) => {
+  const query = `SELECT json_agg(related.related_id) AS related FROM related WHERE product_id=${productID};`;
+  pool.query(query, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      callback(result.rows[0].related);
+      client.end();
+    }
+  });
+};
+
+module.exports = { getProducts, getStyles, getRelated };

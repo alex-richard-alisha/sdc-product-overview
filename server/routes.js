@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 const router = require('express').Router();
 const queries = require('../db/queries');
 
@@ -14,6 +15,17 @@ router.get('/products/:product_id', (req, res) => {
 router.get('/products/:product_id/styles', (req, res) => {
   console.log('👗 STYLES request 👕');
   queries.getStyles(req.params.product_id, (err, data) => {
+    if (err) {
+      res.status(404).send(err);
+    } else {
+      res.status(200).send(data);
+    }
+  });
+});
+
+router.get('/products/:product_id/related', (req, res) => {
+  console.log('RELATED REQUEST');
+  queries.getRelated(req.params.product_id, (err, data) => {
     if (err) {
       res.status(404).send(err);
     } else {

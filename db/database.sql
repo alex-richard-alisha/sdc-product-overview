@@ -31,26 +31,32 @@ CONSTRAINT fk_product
       REFERENCES product_info(product_id)
 );
 
-CREATE TABLE inventory (
-style_id SERIAL PRIMARY KEY,
-product_id INT,
+CREATE TABLE skus (
+sku SERIAL PRIMARY KEY,
+style_id INT,
 size TEXT NULL DEFAULT NULL, 
 quantity INT,
-CONSTRAINT fk_product
-   FOREIGN KEY(product_id) 
-      REFERENCES product_info(product_id),
 CONSTRAINT fk_styles
    FOREIGN KEY(style_id) 
-      REFERENCES styles(style_id) 
+      REFERENCES styles(style_id)        
 );
 
 CREATE TABLE photos (
-id SERIAL PRIMARY KEY,
+id INT PRIMARY KEY,
 style_id INT NOT NULL,
 url TEXT NULL DEFAULT NULL, 
 thumbnail_url TEXT NULL DEFAULT NULL, 
 CONSTRAINT fk_styles
    FOREIGN KEY(style_id) 
       REFERENCES styles(style_id)        
+);
+
+CREATE TABLE related (
+id INT PRIMARY KEY,
+product_id INT,
+related_id INT,
+CONSTRAINT fk_product
+   FOREIGN KEY(product_id) 
+      REFERENCES product_info(product_id)
 );
 

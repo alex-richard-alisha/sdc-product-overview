@@ -1,13 +1,36 @@
 const supertest = require('supertest');
-const app = require('../server/index');
-const db = require('../db/index');
+const { Pool, Client } = require('pg');
+const app = require('../server/server');
+const { password } = require('../config/config');
+const request = require('supertest')('http://localhost:3000');
 
-// beforeEach((done) => {
-//   db.connect('');
-// });
+const pool = new Pool({
+  user: 'postgres',
+  host: 'localhost',
+  port: 5432,
+  database: 'products_dev',
+  password,
+});
 
-describe('This is my first test', () => {
-  test('and it does this', () => {
+const client = new Client({
+  user: 'postgres',
+  host: 'localhost',
+  port: 5432,
+  database: 'products_dev',
+  password,
+});
+
+describe('Runs a fake test', () => {
+  test('True is true is true', () => {
     expect(true).toBe(true);
   });
+});
+
+test('GET /api/products/1', async () => {
+  pool.connect();
+  await request.get('/api/products/1')
+    .expect(200)
+    .then(() => {
+    });
+  pool.end();
 });

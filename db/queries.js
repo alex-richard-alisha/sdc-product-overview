@@ -7,7 +7,7 @@ const getProducts = (productID, callback) => {
     if (err) {
       console.log(err);
     } else {
-      callback(result.rows[0]);
+      callback(null, result.rows[0]);
       client.end();
     }
   });
@@ -19,7 +19,7 @@ const getStyles = (productID, callback) => {
     if (err) {
       console.log(err);
     } else {
-      callback(result.rows);
+      callback(null, result.rows);
       client.end();
     }
   });
@@ -33,7 +33,7 @@ const getRelated = (productID, callback) => {
     if (err) {
       console.log(err);
     } else {
-      callback(result.rows[0].related);
+      callback(null, result.rows[0].related);
       client.end();
     }
   });

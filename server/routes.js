@@ -5,6 +5,7 @@ const queries = require('../db/queries');
 router.get('/products/:product_id', (req, res) => {
   queries.getProducts(req.params.product_id, (err, data) => {
     if (err) {
+      console.log('err');
       res.status(404).send(err);
     } else {
       res.status(200).send(data);

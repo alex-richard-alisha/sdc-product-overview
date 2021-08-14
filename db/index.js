@@ -19,7 +19,7 @@ const client = new Client({
   password,
 });
 
-client.connect()
+pool.connect()
   .then(() => console.log('🐘 🐘 DB CONNECTED 🐘 🐘'))
   .catch((e) => console.log(e))
   .finally(() => client.end());

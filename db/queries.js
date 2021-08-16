@@ -14,12 +14,20 @@ const getProducts = (productID, callback) => {
 };
 
 const getStyles = (productID, callback) => {
-  const query = `SELECT styles.style_id AS id, name, original_price, sale_price, default_style AS default, jsonb_agg (distinct jsonb_build_object('photos', photos.thumbnail_url, 'url', photos.url)) AS photos, jsonb_object_agg(skus.sku, jsonb_build_object('quantity', skus.quantity, 'size', skus.size)) AS skus FROM styles JOIN photos on photos.style_id = styles.style_id JOIN skus ON skus.style_id = styles.style_id WHERE styles.product_id=${productID} GROUP BY styles.style_id;`;
+  const query = [
+    'SELECT styles.style_id AS id, name, original_price, sale_price, default_style AS default,',
+    'jsonb_agg(distinct jsonb_build_object(\'thumbnail_url\', photos.thumbnail_url, \'url\', photos.url)) AS photos, ',
+    'jsonb_object_agg(skus.sku, jsonb_build_object(\'quantity\', skus.quantity, \'size\', skus.size)) AS skus ',
+    'FROM styles JOIN photos on photos.style_id = styles.style_id ',
+    'JOIN skus ON skus.style_id = styles.style_id ',
+    `WHERE styles.product_id=${productID} GROUP BY styles.style_id;`,
+  ].join('');
   pool.query(query, (err, result) => {
     if (err) {
       console.log(err);
     } else {
-      callback(null, result.rows);
+      callback(null, { product: productID, results: result.rows });
+      // console.log({ product: productID, results: result.rows }.results[0].name);
       client.end();
     }
   });

@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+    postgres:
+        image: sdc-postgres
+        container_name: sdc-postgres
+        ports:
+            - 3001:5432
+        environment: 
+          POSTGRES_PASSWORD: password
+        build:
+          context: .
+          dockerfile: postgres.Dockerfile 
+    node:
+            image: sdc-node
+            container_name: sdc-node
+            depends_on:
+                - postgres
+            ports: 
+                - 3002:3000
+            build:
+                context: .
+                dockerfile: node.Dockerfile

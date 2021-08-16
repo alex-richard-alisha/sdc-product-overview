@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 const router = require('express').Router();
-const queries = require('../db/queries');
+const queries = require('./queries');
 
 router.get('/products/:product_id', (req, res) => {
   queries.getProducts(req.params.product_id, (err, data) => {

@@ -45,4 +45,4 @@ const getRelated = (productID, callback) => {
   });
 };
 
-module.exports = { getProducts, getStyles, getRelated };
+module.exports = {getProducts, getStyles, getRelated}

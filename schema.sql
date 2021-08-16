@@ -1,4 +1,7 @@
-DROP TABLE IF EXISTS product_info, styles, features, photos, inventory;
+CREATE DATABASE sdc;
+
+\c sdc;
+
 
 CREATE TABLE product_info ( 
 product_id SERIAL PRIMARY KEY, 
@@ -59,4 +62,38 @@ CONSTRAINT fk_product
    FOREIGN KEY(product_id) 
       REFERENCES product_info(product_id)
 );
+
+
+COPY product_info
+FROM '/seed/product.csv'
+DELIMITER ',' CSV HEADER;
+
+COPY styles
+FROM '/seed/styles.csv'
+DELIMITER ',' CSV HEADER;
+
+COPY features
+FROM '/seed/features.csv'
+DELIMITER ',' CSV HEADER;
+
+COPY skus
+FROM '/seed/skus.csv'
+DELIMITER ',' CSV HEADER;
+
+COPY photos
+FROM '/seed/photos.csv'
+DELIMITER ',' CSV HEADER;
+
+COPY related
+FROM '/seed/related.csv'
+DELIMITER ',' CSV HEADER;
+
+CREATE INDEX style_idx ON styles (style_id);
+CREATE INDEX product_idx ON styles (product_id);
+CREATE INDEX stylePhoto_idx ON photos (style_id);
+CREATE INDEX styleSku_idx ON skus (style_id);
+
+CREATE INDEX productFeatures_idx ON features (product_id);
+
+CREATE INDEX productRelated_idx ON related (product_id);
 

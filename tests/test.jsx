@@ -12,14 +12,6 @@ const pool = new Pool({
   password,
 });
 
-const client = new Client({
-  user: 'postgres',
-  host: 'localhost',
-  port: 5432,
-  database: 'products_dev',
-  password,
-});
-
 describe('Runs a fake test', () => {
   test('True is true is true', () => {
     expect(true).toBe(true);

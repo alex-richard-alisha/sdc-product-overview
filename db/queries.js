@@ -26,6 +26,7 @@ const getStyles = (productID, callback) => {
       console.log(err);
     } else {
       callback(null, { product: productID, results: result.rows });
+      // console.log({ product: productID, results: result.rows }.results[0].name);
       client.end();
     }
   });

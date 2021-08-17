@@ -4,7 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+<<<<<<< HEAD:server/package.json
     "start": "node index.js"
+=======
+    "test": "jest tests",
+    "start": "nodemon --delay 1000ms server/index.js"
+>>>>>>> main:package.json
   },
   "repository": {
     "type": "git",

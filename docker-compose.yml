@@ -1,22 +1,33 @@
 version: "3.8"
 services:
+    frontend:
+        image: sdc-m-frontend
+        container_name: sdc-m-frontend
+        ports:
+            - 3002:3500
+        build:
+            context: ./frontend
+            dockerfile: frontend.Dockerfile
+        restart: on-failure
     postgres:
-        image: sdc-postgres
-        container_name: sdc-postgres
+        image: sdc-m-postgres
+        container_name: sdc-m-postgres
         ports:
             - 3001:5432
         environment: 
           POSTGRES_PASSWORD: password
         build:
-          context: .
+          context: ./db
           dockerfile: postgres.Dockerfile 
+        
     node:
-            image: sdc-node
-            container_name: sdc-node
+            image: sdc-m-node
+            container_name: sdc-m-node
             depends_on:
                 - postgres
             ports: 
-                - 3002:3000
+                - 3000:3000
             build:
-                context: .
+                context: ./server
                 dockerfile: node.Dockerfile
+            restart: on-failure

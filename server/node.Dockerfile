@@ -2,7 +2,7 @@ FROM node:latest
 
 WORKDIR /src
 
-COPY server /src
+COPY . .
 
 RUN npm install
 

@@ -22,7 +22,7 @@ const getStyles = (productID, callback) => {
     'JOIN skus ON skus.style_id = styles.style_id ',
     `WHERE styles.product_id=${productID} GROUP BY styles.style_id;`,
   ].join('');
-  console.log(pool);
+  // console.log(pool);
   pool.query(query, (err, result) => {
     if (err) {
       console.log(err);

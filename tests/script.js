@@ -11,26 +11,38 @@ export const requests = new Counter('http_reqs');
 
 export const options = {
   stages: [
-    { target: 20, duration: '1m' },
-    { target: 15, duration: '1m' },
-    { target: 0, duration: '1m' },
+    { duration: '1m', target: 50 }, // below normal load
+    { duration: '2m', target: 50 },
+    { duration: '1m', target: 100 }, // normal load
+    { duration: '2m', target: 100 },
+    { duration: '1m', target: 150 }, // around the breaking point
+    { duration: '2m', target: 150 },
+    { duration: '1m', target: 200 }, // beyond the breaking point
+    { duration: '2m', target: 200 },
+    { duration: '5m', target: 0 }, // scale down. Recovery stage.
   ],
-  thresholds: {
-    requests: ['count < 100'],
-  },
 };
 
 export default function () {
-  // our HTTP request, note that we are saving the response to res, which can be accessed later
+  const BASE_URL = 'http://localhost:3000/api';
 
-  const res = http.get('http://localhost:3000/api/products/1/styles');
+  const res = http.batch([
+    [
+      'GET', `${BASE_URL}/products/1`,
+    ],
+    [
+      'GET', `${BASE_URL}/products/1/styles`,
+    ],
+    [
+      'GET', `${BASE_URL}/products/1/related`,
+    ],
+  ]);
 
   sleep(1);
 
   const checkRes = check(res, {
     'status is 200': (r) => r.status === 200,
-    'response body': (r) => r.body.results.length > 0,
   });
 }
 
-//k6 run script.js
+//k6 run tests/script.js

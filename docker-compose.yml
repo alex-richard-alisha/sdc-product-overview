@@ -6,10 +6,7 @@ services:
         ports:
             - 3001:5432
         environment: 
-            SEQ_DB: sdc
-            SEQ_USER: postgres
-            SEQ_PW: password
-            DATABASE_URL: postgres://postgres:password@sdc-postgres:5432/sdc
+            POSTGRES_PASSWORD: password
         build:
           context: .
           dockerfile: postgres.Dockerfile 

@@ -2,7 +2,7 @@ const { Pool, Client } = require('pg');
 
 const pool = new Pool({
   user: 'postgres',
-  host: '3.144.20.160',
+  host: '3.143.147.30',
   port: 3001,
   database: 'sdc',
   password: 'password',
@@ -10,7 +10,7 @@ const pool = new Pool({
 
 const client = new Client({
   user: 'postgres',
-  host: '3.144.20.160',
+  host: '3.143.147.30',
   port: 3001,
   database: 'sdc',
   password: 'password',
@@ -22,3 +22,5 @@ pool.connect()
   .finally(() => client.end());
 
 module.exports = { pool, client };
+
+

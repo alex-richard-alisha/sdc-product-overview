@@ -20,3 +20,10 @@ services:
             build:
                 context: .
                 dockerfile: node.Dockerfile
+    nginx:
+        restart: always 
+        build:
+            dockerfile: nginx.Dockerfile
+            context: .
+        ports:
+            - '80:80'

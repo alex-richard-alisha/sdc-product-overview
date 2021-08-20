@@ -21,6 +21,8 @@ services:
                 context: .
                 dockerfile: node.Dockerfile
     nginx:
+        image: sdc-ngnix
+        container_name: sdc-ngnix
         restart: always 
         build:
             dockerfile: nginx.Dockerfile

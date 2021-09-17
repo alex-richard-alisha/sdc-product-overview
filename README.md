@@ -45,6 +45,6 @@ RESULTS:
 # Atelier: Database System Design, RESTful API
 ### Next Steps:
 - Compare performance with NOSQL database
-- Utilize Kubernetes
+- Utilize Kubernetes to improve productivity and stability
 - Find new breaking points with combined queries
 - Automate deployments with (Terraform/AWS Codepipe)

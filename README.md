@@ -31,6 +31,8 @@ GOAL: Scale to
 - Response time: less than 2000ms
 - Throughput: 10K RPS
 
+METHOD: Testing with loader.io
+
 CONSTRAINTS:
 - AWS Services: RDS, Elastic Beanstalk, etc
 - Cannot VERTICALLY scale

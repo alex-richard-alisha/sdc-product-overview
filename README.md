@@ -47,3 +47,4 @@ RESULTS:
 - Compare performance with NOSQL database
 - Utilize Kubernetes
 - Find new breaking points with combined queries
+- Automate deployments with (Terraform/AWS Codepipe)

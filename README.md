@@ -46,3 +46,4 @@ RESULTS:
 ### Next Steps:
 - Compare performance with NOSQL database
 - Utilize Kubernetes
+- Find new breaking points with combined queries

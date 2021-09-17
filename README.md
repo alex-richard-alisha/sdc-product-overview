@@ -39,3 +39,8 @@ RESULTS:
 - All queries able to handle 4000 RPS
 
 ![alt text](https://firebasestorage.googleapis.com/v0/b/sandbox-3a2e3.appspot.com/o/table3.PNG?alt=media&token=fb7404da-80f9-411d-83e3-f1717e245607)
+
+# Atelier: Database System Design, RESTful API
+### Next Steps:
+- Compare performance with NOSQL database
+- Utilize Kubernetes

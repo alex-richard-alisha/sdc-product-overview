@@ -1,5 +1,5 @@
 # Atelier: Database System Design, RESTful API
-Developed RESTful API and database for an inherited front-end E-Commerce codebase
+Developed RESTful API and database for an inherited front-end E-Commerce codebase with over 25M records in CSVs
 
 ### Tech 
 

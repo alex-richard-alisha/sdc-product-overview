@@ -10,9 +10,9 @@ app.listen(3000, () => {
 
 app.use(express.json());
 
-// app.get('/loaderio-999f6584a001744f4bcb128dfdf1ee66', (req, res) => {
-//   console.log('IO TESTING');
-//   res.send('loaderio-999f6584a001744f4bcb128dfdf1ee66'); 
-// });
+app.get('/loaderio-3b8deab068da8dfc94c1f19cef07e77c', (req, res) => {
+  console.log('IO TESTING');
+  res.send('loaderio-3b8deab068da8dfc94c1f19cef07e77c'); 
+});
 
 app.use('/api', router);

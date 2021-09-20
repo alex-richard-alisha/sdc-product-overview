@@ -14,5 +14,7 @@ export let options = {
 };
 
 export default function () {
-  http.get('http://localhost:3000/api/products/1/styles');
+  const pId = Math.ceil(Math.random() * 100);
+// http.get('http://localhost:3000/api/products/1/styles');
+  http.get(`http://localhost:3000/api/products/${pId}/styles`);
 }

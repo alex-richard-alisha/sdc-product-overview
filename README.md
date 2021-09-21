@@ -3,7 +3,7 @@ Developed RESTful API and database for an inherited front-end E-Commerce codebas
 
 ### Tech 
 
-Node.js, Express PostgreSQL, Nginx, AWS, K6, Loader.io, Docker, Jest, Supertest
+Node.js, Express.js, PostgreSQL, Nginx, AWS, K6, Loader.io, Docker, Jest, Supertest
 
 # Performance Testing - Local
 GOAL: All requests:

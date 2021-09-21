@@ -44,6 +44,6 @@ RESULTS:
 
 # Next Steps AKA Season 2
 - Compare performance with NOSQL database
-- Utilize Kubernetes to improve productivity and stability
+- Horizontally scale databases (replica sets)
 - Find new breaking points with combined queries
 - Automate deployments with (Terraform/AWS Codepipe)

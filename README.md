@@ -4,7 +4,6 @@ Developed RESTful API and database for an inherited front-end E-Commerce codebas
 ### Tech 
 
 Javascript, Node.js, PostgreSQL, Express, NGINIX, AWS EC2, K6, Docker, Jest, Supertest
-![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white) ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
 
 # Performance Testing - Local
 GOAL: All requests:

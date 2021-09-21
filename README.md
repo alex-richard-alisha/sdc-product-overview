@@ -44,6 +44,6 @@ RESULTS:
 
 # Next Steps AKA Season 2
 - Compare performance with NOSQL database (probably MongoDB)
-- Horizontally scale databases (replica sets)
+- Horizontally scale databases (probably replica sets)
 - Monitor performance (probably New Relic)
 

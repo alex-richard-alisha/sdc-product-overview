@@ -45,5 +45,5 @@ RESULTS:
 # Next Steps AKA Season 2
 - Compare performance with NOSQL database
 - Horizontally scale databases (replica sets)
-- Find new breaking points with combined queries
-- Automate deployments with (Terraform/AWS Codepipe)
+- Monitor performance (maybe New Relic)
+
